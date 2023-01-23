@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
+    public GameObject[] obstaclePrefabs;
 
     private PlayerController playerControllerScript;
    
+
     private float startDelay = 2f;
     private float repeatRate = 2f;
     // Start is called before the first frame update
@@ -29,6 +30,8 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnObstacle()
     {
-        Instantiate(obstaclePrefab, transform.position, obstaclePrefab.transform.rotation);
+        int randomIdx = Random.Range(0, obstaclePrefabs.Length);
+        Instantiate(obstaclePrefabs[randomIdx], transform.position, obstaclePrefabs[randomIdx].transform.rotation); //un array no tiene transform por lo tanto tenemos que poner el RandomIdx para decirle que agarre el transform del prefab aleatorio elegido.
     }
+
 }
